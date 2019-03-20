@@ -84,13 +84,13 @@
 				
 				lifeTotal.appendChild(lifeTotalInc);
 				card.appendChild(lifeTotal);
-
+				//this is the life total label
 				var lifeTotalLabel = document.createElement('li');
 				lifeTotalLabel.classList.add("list-group-item");
 				lifeTotalLabel.classList.add("list-group-item-primary");
 				lifeTotalLabel.innerHTML = 'Player Life Total';
 				card.appendChild(lifeTotalLabel);
-
+				//this is the life total value
 				var lifeTotalValue = document.createElement('li');
 				lifeTotalValue.id = 'player_'+playerIndex+'_life_total'; 
 				lifeTotalValue.innerHTML = players[playerIndex-1].total;
@@ -101,7 +101,7 @@
 				lifeTotal.classList.add("list-group-flush");
 
 				document.getElementById('players').appendChild(card);
-
+				//start life total buttons
 
 				var lifeTotal = document.createElement('ul');
 				lifeTotal.classList.add("list-group");
@@ -121,7 +121,42 @@
 
 
 				document.getElementById('players').appendChild(card);
-			};
+
+				//begin commander damage
+				var commanderTotal = document.createElement('ul');
+				commanderTotal.classList.add("list-group");
+				commanderTotal.classList.add("list-group-flush");
+				//this increases life total
+				var commanderTotalInc = document.createElement('li');
+				commanderTotalInc.classList.add("list-group-item")
+				commanderTotalInc.innerHTML = '<i class="fas fa-angle-up"></i>';
+				commanderTotalInc.onclick = function(){
+					players[playerIndex-1].total++;
+					document.getElementById('player_'+playerIndex+'_commander_total').innerHTML = players[playerIndex-1].total;
+					console.log(players);
+				}
+				commanderTotal.appendChild(commanderTotalInc);
+				card.appendChild(commanderTotal);
+				//this is the commander life total label
+				var commanderTotalLabel = document.createElement('li');
+				commanderTotalLabel.classList.add("list-group-item");
+				commanderTotalLabel.classList.add("list-group-item");
+				commanderTotalLabel.innerHTML = 'Commander Life Total';
+				card.appendChild(commanderTotalLabel);
+				//begin commander total value
+				var commanderTotalValue = document.createElement('li');
+				commanderTotalValue.id = 'commander_'+playerIndex+'_life_total'; 
+				commanderTotalValue.innerHTML = players[playerIndex-1].total;
+				card.appendChild(commanderTotalValue);
+
+				var commanderTotal = document.createElement('ul');
+				commanderTotal.classList.add("list-group");
+				commanderTotal.classList.add("list-group-flush");
+
+				document.getElementById('players').appendChild(card);
+
+			
+			 };
 		};
 	</script>
 	

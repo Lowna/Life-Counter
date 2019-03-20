@@ -168,6 +168,58 @@
 				commanderTotal.appendChild(commanderTotalDec);
 				card.appendChild(commanderTotal);
 
+				///////////////////////////////////////////////////
+				//begin infect damage
+
+				var infectTotal = document.createElement('ul');
+				infectTotal.classList.add("list-group");
+				infectTotal.classList.add("list-group-flush");
+
+				document.getElementById('players').appendChild(card);
+
+				var infectTotal = document.createElement('ul');
+				infectTotal.classList.add("list-group");
+				infectTotal.classList.add("list-group-flush");
+				//this increases life total
+				var infectTotalInc = document.createElement('li');
+				infectTotalInc.classList.add("list-group-item")
+				infectTotalInc.innerHTML = '<i class="fas fa-angle-up"></i>';
+				infectTotalInc.onclick = function(){
+					players[playerIndex-1].total++;
+					document.getElementById('infect_'+playerIndex+'_infect_total').innerHTML = players[playerIndex-1].total;
+					console.log(players);
+				}
+				infectTotal.appendChild(infectTotalInc);
+				card.appendChild(infectTotal);
+				//this is the commander life total label
+				var infectTotalLabel = document.createElement('li');
+				infectTotalLabel.classList.add("list-group-item");
+				infectTotalLabel.classList.add("list-group-item");
+				infectTotalLabel.innerHTML = 'Infect Life Total';
+				card.appendChild(infectTotalLabel);
+				//begin commander total value
+				var infectTotalValue = document.createElement('li');
+				infectTotalValue.id = 'infect_'+playerIndex+'_infect_total'; 
+				infectTotalValue.innerHTML = players[playerIndex-1].total;
+				card.appendChild(infectTotalValue);
+
+				var infectTotal = document.createElement('ul');
+				infectTotal.classList.add("list-group");
+				infectTotal.classList.add("list-group-flush");
+
+				document.getElementById('players').appendChild(card);
+				
+				//this decrease life total
+				var infectTotalDec = document.createElement('li');
+				infectTotalDec.classList.add("list-group-item")
+				infectTotalDec.innerHTML = '<i class="fas fa-angle-down"></i>';
+				infectTotalDec.onclick = function(){
+					players[playerIndex-1].total--;
+					document.getElementById('infect_'+playerIndex+'_infect_total').innerHTML = players[playerIndex-1].total;
+					console.log(players);
+				}
+				infectTotal.appendChild(infectTotalDec);
+				card.appendChild(infectTotal);
 			
 			 };
 		};

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+	.fa {
+		color: #000;
+		font-size: 2em;
+	}
+</style>
+<head>
+	<title>Lifecounter</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<body>
+	<div id="players" class="container">
+		<!-- <div class="card text-center mt-5" style="width: 18rem;">
+		  <div class="card-header">
+		    Player
+		  </div>
+		  <ul class="list-group list-group-flush">
+		    <li id="up" onclick="increaseLife()" class="list-group-item"><i class="fas fa-angle-up"></i></li>
+		    <li class="list-group-item list-group-item-primary">Your Life Total</li>
+		    <li id="lifeTotal"  class="list-group-item">40</li>
+		    <li id="down" class="list-group-item"><i class="fas fa-angle-down"></i></li>
+		  </ul>
+		  <ul class="list-group list-group-flush">
+		    <li id="up" class="list-group-item"><i class="fas fa-angle-up"></i></li>
+		    <li class="list-group-item list-group-item-secondary">Commander Damage</li>
+		    <li id="lifeTotal" class="list-group-item">21</li>
+		    <li id="down" class="list-group-item"><i class="fas fa-angle-down"></i></li>
+		  </ul>
+		  <ul class="list-group list-group-flush">
+		    <li id="up" class="list-group-item"><i class="fas fa-angle-up"></i></li>
+		    <li class="list-group-item list-group-item-danger">Infect</li>
+		    <li id="lifeTotal" class="list-group-item">10</li>
+		    <li id="down" class="list-group-item"><i class="fas fa-angle-down"></i></li>
+		  </ul>
+		</div> -->
+	</div>	
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			var players = [];
+			var defaultLifeTotal = 40;
+			var defaultInfect = 0;
+			var defaultCommander = 0;
+
+			var maxInfect = 15;
+			var maxCommander = 21;
+
+			document.getElementById('addPlayer').onclick = function () {
+				players.push({total:defaultLifeTotal,commander:defaultCommander,infect:defaultInfect});
+
+				var playerIndex = players.length;
+
+				var card = document.createElement('div');
+				card.classList.add("card");
+				card.classList.add("text-center");
+				card.classList.add("mt-5");
+				card.style = "width: 18rem;";
+				card.id = "player_"+playerIndex;
+
+				var cardHeader = document.createElement('div');
+				cardHeader.classList.add("card-header");
+				cardHeader.innerHTML = "Player "+playerIndex;
+				card.appendChild(cardHeader);
+
+				var lifeTotal = document.createElement('ul');
+				lifeTotal.classList.add("list-group");
+				lifeTotal.classList.add("list-group-flush");
+				//this increases life total
+				var lifeTotalInc = document.createElement('li');
+				lifeTotalInc.classList.add("list-group-item")
+				lifeTotalInc.innerHTML = '<i class="fas fa-angle-up"></i>';
+				lifeTotalInc.onclick = function(){
+					players[playerIndex-1].total++;
+					document.getElementById('player_'+playerIndex+'_life_total').innerHTML = players[playerIndex-1].total;
+					console.log(players);
+				}
+				
+				lifeTotal.appendChild(lifeTotalInc);
+				card.appendChild(lifeTotal);
+
+				var lifeTotalLabel = document.createElement('li');
+				lifeTotalLabel.classList.add("list-group-item");
+				lifeTotalLabel.classList.add("list-group-item-primary");
+				lifeTotalLabel.innerHTML = 'Player Life Total';
+				card.appendChild(lifeTotalLabel);
+
+				var lifeTotalValue = document.createElement('li');
+				lifeTotalValue.id = 'player_'+playerIndex+'_life_total'; 
+				lifeTotalValue.innerHTML = players[playerIndex-1].total;
+				card.appendChild(lifeTotalValue);
+
+				var lifeTotal = document.createElement('ul');
+				lifeTotal.classList.add("list-group");
+				lifeTotal.classList.add("list-group-flush");
+
+				document.getElementById('players').appendChild(card);
+
+
+				var lifeTotal = document.createElement('ul');
+				lifeTotal.classList.add("list-group");
+				lifeTotal.classList.add("list-group-flush");
+				//this decreases life total
+				var lifeTotalDec = document.createElement('li');
+				lifeTotalDec.classList.add("list-group-item")
+				lifeTotalDec.innerHTML = '<i class="fas fa-angle-down"></i>';
+				lifeTotalDec.onclick = function(){
+					players[playerIndex-1].total--;
+					document.getElementById('player_'+playerIndex+'_life_total').innerHTML = players[playerIndex-1].total;
+					console.log(players);
+				}
+				
+				lifeTotal.appendChild(lifeTotalDec);
+				card.appendChild(lifeTotal);
+
+
+				document.getElementById('players').appendChild(card);
+			};
+		};
+	</script>
+	
+	<button id="addPlayer" type="button" class="btn btn-primary">Add Player</button>
+</body>
+</html>

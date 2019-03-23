@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <style type="text/css">
-	.fa {
-		color: #000;
-		font-size: 2em;
+	.container {
+		display: flex;
+		flex-direction: row;
 	}
+	
 </style>
 <head>
 	<title>Lifecounter</title>
@@ -53,7 +54,11 @@
 			var maxCommander = 21;
 
 			document.getElementById('addPlayer').onclick = function () {
-				players.push({total:defaultLifeTotal,commander:defaultCommander,infect:defaultInfect});
+				players.push({
+					total:defaultLifeTotal,
+					commander:defaultCommander,
+					infect:defaultInfect
+				});
 
 				var playerIndex = players.length;
 
@@ -132,8 +137,8 @@
 				commanderTotalInc.classList.add("list-group-item")
 				commanderTotalInc.innerHTML = '<i class="fas fa-angle-up"></i>';
 				commanderTotalInc.onclick = function(){
-					players[playerIndex-1].total++;
-					document.getElementById('commander_'+playerIndex+'_commander_total').innerHTML = players[playerIndex-1].total;
+					players[playerIndex-1].commander++;
+					document.getElementById('commander_'+playerIndex+'_Commander').innerHTML = players[playerIndex-1].commander;
 					console.log(players);
 				}
 				commanderTotal.appendChild(commanderTotalInc);
@@ -142,12 +147,12 @@
 				var commanderTotalLabel = document.createElement('li');
 				commanderTotalLabel.classList.add("list-group-item");
 				commanderTotalLabel.classList.add("list-group-item-secondary");
-				commanderTotalLabel.innerHTML = 'Commander Life Total';
+				commanderTotalLabel.innerHTML = 'Commander Total';
 				card.appendChild(commanderTotalLabel);
 				//begin commander total value
 				var commanderTotalValue = document.createElement('li');
-				commanderTotalValue.id = 'commander_'+playerIndex+'_commander_total'; 
-				commanderTotalValue.innerHTML = players[playerIndex-1].total;
+				commanderTotalValue.id = 'commander_'+playerIndex+'_Commander'; 
+				commanderTotalValue.innerHTML = players[playerIndex-1].commander;
 				card.appendChild(commanderTotalValue);
 
 				var commanderTotal = document.createElement('ul');
@@ -161,8 +166,8 @@
 				commanderTotalDec.classList.add("list-group-item")
 				commanderTotalDec.innerHTML = '<i class="fas fa-angle-down"></i>';
 				commanderTotalDec.onclick = function(){
-					players[playerIndex-1].total--;
-					document.getElementById('commander_'+playerIndex+'_commander_total').innerHTML = players[playerIndex-1].total;
+					players[playerIndex-1].commander--;
+					document.getElementById('commander_'+playerIndex+'_Commander').innerHTML = players[playerIndex-1].commander;
 					console.log(players);
 				}
 				commanderTotal.appendChild(commanderTotalDec);
@@ -185,8 +190,8 @@
 				infectTotalInc.classList.add("list-group-item")
 				infectTotalInc.innerHTML = '<i class="fas fa-angle-up"></i>';
 				infectTotalInc.onclick = function(){
-					players[playerIndex-1].total++;
-					document.getElementById('infect_'+playerIndex+'_infect_total').innerHTML = players[playerIndex-1].total;
+					players[playerIndex-1].infect++;
+					document.getElementById('infect_'+playerIndex+'_infect_total').innerHTML = players[playerIndex-1].infect;
 					console.log(players);
 				}
 				infectTotal.appendChild(infectTotalInc);
@@ -200,7 +205,7 @@
 				//begin commander total value
 				var infectTotalValue = document.createElement('li');
 				infectTotalValue.id = 'infect_'+playerIndex+'_infect_total'; 
-				infectTotalValue.innerHTML = players[playerIndex-1].total;
+				infectTotalValue.innerHTML = players[playerIndex-1].infect;
 				card.appendChild(infectTotalValue);
 
 				var infectTotal = document.createElement('ul');
@@ -214,8 +219,8 @@
 				infectTotalDec.classList.add("list-group-item")
 				infectTotalDec.innerHTML = '<i class="fas fa-angle-down"></i>';
 				infectTotalDec.onclick = function(){
-					players[playerIndex-1].total--;
-					document.getElementById('infect_'+playerIndex+'_infect_total').innerHTML = players[playerIndex-1].total;
+					players[playerIndex-1].infect--;
+					document.getElementById('infect_'+playerIndex+'_infect_total').innerHTML = players[playerIndex-1].infect;
 					console.log(players);
 				}
 				infectTotal.appendChild(infectTotalDec);
